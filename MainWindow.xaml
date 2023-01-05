@@ -5,39 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library_DB"
         mc:Ignorable="d"
-        Title="Your Library" Height="450" Width="800" Foreground="#FFFAFAFA" RenderTransformOrigin="0.5,0.5">
+        Title="Your Library" Height="650" Width="420" Foreground="#FFFAFAFA" RenderTransformOrigin="0.5,0.5">
+    <!--
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FF986F50" Offset="0.4"/>
-            <GradientStop Color="#FF6D4614" Offset="1"/>
+            <GradientStop Color="#FF895C3B" Offset="0.4"/>
+            <GradientStop Offset="1" Color="#FFC5CACC"/>
         </LinearGradientBrush>
     </Window.Background>
+    -->
+    <Window.Background>
+        <ImageBrush ImageSource="/Resources/bakgrund1.jpg"></ImageBrush>
+    </Window.Background>
+
     <Grid>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0">
-            <Image Source="/Resources/Images/logo.png" Width="70"></Image>
-            <TextBlock Grid.Row="0" Grid.Column ="0" 
-                       Text="Your Privet Library" Foreground="White" FontFamily="Century Gothic"  FontSize="22" 
-                       VerticalAlignment="Bottom" Margin="-15,0,0,10"></TextBlock>
-        </StackPanel>
-        <Border Width="450"
+        <Border Width="250"
                 Grid.ColumnSpan="2"
                 VerticalAlignment="Bottom" 
                 HorizontalAlignment="Left"
-                BorderBrush="#FF473A0D" 
-                BorderThickness="2"
-                Margin="15,0,0,0"
-                Opacity="0.65">
+                BorderBrush="White" 
+                BorderThickness="1"
+                Margin="15,0,0,0" >
         </Border>
-        
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
+            <Image Source="/Resources/icon4.png" Width="50" Panel.ZIndex="1" OpacityMask="Black" Margin="15,0,0,0"/>
+            <TextBlock Grid.Row="0" Grid.Column ="0"
+                       Text="Your Privet Library" Foreground="White"
+                       FontFamily="Century Gothic" FontWeight="Light"
+                       FontSize="22" 
+                       VerticalAlignment="Bottom"  Margin="-1,0,0,10">
+
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+            <Border Background="White" Margin="20,30,20,30" CornerRadius="30">
+                <TextBox
+                     Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" 
+                     Margin="30,20,20,20"
+                     Text="Search Book"
+                     FontSize="20" 
+                     FontFamily="Century Gothic" 
+                     Foreground="#FF503612"
+                     BorderBrush="Transparent"
+                     Background="Transparent">
+                   
+                </TextBox>
+            </Border>
+        </StackPanel>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
             <ColumnDefinition/>
+
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55"/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="55" />
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
-        
+
     </Grid>
 </Window>
