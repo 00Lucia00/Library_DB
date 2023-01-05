@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library_DB"
         mc:Ignorable="d"
-        Title="Your Library" Height="650" Width="420" Foreground="#FFFAFAFA" RenderTransformOrigin="0.5,0.5">
+        Title="Your Library" Height="650" Width="420">
     <!--
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -19,6 +19,7 @@
     </Window.Background>
 
     <Grid>
+        <!--Header-->
         <Border Width="250"
                 Grid.ColumnSpan="2"
                 VerticalAlignment="Bottom" 
@@ -27,18 +28,22 @@
                 BorderThickness="1"
                 Margin="15,0,0,0" >
         </Border>
-
+         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
-            <Image Source="/Resources/icon4.png" Width="50" Panel.ZIndex="1" OpacityMask="Black" Margin="15,0,0,0"/>
+            <Image Source="/Resources/icon2.png" 
+                   Width="30" Height="30" Panel.ZIndex="1" 
+                   OpacityMask="Black" 
+                   Margin="15,10,5,5"/>
             <TextBlock Grid.Row="0" Grid.Column ="0"
                        Text="Your Privet Library" Foreground="White"
                        FontFamily="Century Gothic" FontWeight="Light"
                        FontSize="22" 
-                       VerticalAlignment="Bottom"  Margin="-1,0,0,10">
-
+                       VerticalAlignment="Bottom"  Margin="0,0,0,8">
             </TextBlock>
         </StackPanel>
-
+        <!--Header-->
+        
+        <!--Search Bar-->
         <StackPanel Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
             <Border Background="White" Margin="20,30,20,30" CornerRadius="30">
                 <TextBox
@@ -50,20 +55,28 @@
                      Foreground="#FF503612"
                      BorderBrush="Transparent"
                      Background="Transparent">
-                   
                 </TextBox>
             </Border>
         </StackPanel>
-
+        <!--Search Bar-->
+        <!--Buttons-->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" 
+                    Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2">
+            <Button Grid.Column="1" Grid.Row="2" Height="30" Width="80" 
+                    Margin="0,0,20,0"></Button>
+            <Button Grid.Column="1" Grid.Row="2" Height="30" Width="80"
+                    Margin="20,0,0,0"></Button>
+        </StackPanel>
+        <!--Buttons-->
+        <!--Grid Design-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="55" />
             <RowDefinition Height="150"/>
             <RowDefinition Height="250"/>
         </Grid.RowDefinitions>
-
+        <!--Grid Design-->
     </Grid>
 </Window>

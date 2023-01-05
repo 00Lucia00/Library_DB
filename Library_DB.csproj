@@ -11,10 +11,14 @@
     <None Remove="Resources\bakgrund1.jpg" />
     <None Remove="Resources\bakgrund2.jpg" />
     <None Remove="Resources\icon1.png" />
+    <None Remove="Resources\icon2.png" />
     <None Remove="Resources\icon4.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\icon2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\icon4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
