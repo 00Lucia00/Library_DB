@@ -5,8 +5,39 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library_DB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Your Library" Height="450" Width="800" Foreground="#FFFAFAFA" RenderTransformOrigin="0.5,0.5">
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF986F50" Offset="0.4"/>
+            <GradientStop Color="#FF6D4614" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
     <Grid>
-
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0">
+            <Image Source="/Resources/Images/logo.png" Width="70"></Image>
+            <TextBlock Grid.Row="0" Grid.Column ="0" 
+                       Text="Your Privet Library" Foreground="White" FontFamily="Century Gothic"  FontSize="22" 
+                       VerticalAlignment="Bottom" Margin="-15,0,0,10"></TextBlock>
+        </StackPanel>
+        <Border Width="450"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left"
+                BorderBrush="#FF473A0D" 
+                BorderThickness="2"
+                Margin="15,0,0,0"
+                Opacity="0.65">
+        </Border>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
     </Grid>
 </Window>
