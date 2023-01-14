@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace Library_DB
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for ListBooks.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ListBooks : Page
     {
-        public MainWindow()
+        public ListBooks()
         {
             InitializeComponent();
-        }
-
-        private void ButnClick1(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new ListBooks();
-        }
-
-        private void BtnClick2(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new AddBook();
         }
     }
 }
