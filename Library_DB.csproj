@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icon1.png" />
     <None Remove="Resources\bakgrund1.jpg" />
     <None Remove="Resources\bakgrund2.jpg" />
     <None Remove="Resources\icon1.png" />
@@ -21,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="icon1.png" />
     <Resource Include="Resources\icon2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

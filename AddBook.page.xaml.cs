@@ -23,11 +23,14 @@ namespace Library_DB
         public AddBook()
         {
             InitializeComponent();
+           
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
+
+      
     }
 }

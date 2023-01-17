@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Library_DB"
         mc:Ignorable="d"
-        Title="Your Library" Height="650" Width="420" WindowStartupLocation="CenterScreen" >
+        Title="Your Library" Icon="/icon1.png" Height="650" Width="420" WindowStartupLocation="CenterScreen" >
     
     <Window.Background>
         <ImageBrush ImageSource="/Resources/bakgrund1.jpg"></ImageBrush>
@@ -21,7 +22,6 @@
                 BorderThickness="1"
                 Margin="15,0,0,0" >
         </Border>
-         
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
             <Image Source="/Resources/icon2.png" 
                    Width="30" Height="30" Panel.ZIndex="1" 
@@ -34,50 +34,60 @@
                        VerticalAlignment="Bottom"  Margin="0,0,0,8">
             </TextBlock>
         </StackPanel>
-        <!--Header-->
         <!--Buttons-->
-        <StackPanel Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
-            
-            <Button Margin="0,15,0,0"
-                    Height="30" Width="100"
-                    FontSize="14"
-                    Content="ADD" Foreground="White" 
-                    BorderThickness="0" Background="Transparent" ClickMode="Press" Click="BtnClick2"/>
-            <Button 
-                    Height="30" Width="100"
-                    FontSize="16"
-                    Content="SEE LIST" Foreground="White" 
-                    BorderThickness="0" Background="Transparent" Click="ButnClick1">
-            </Button>
-            <Button  
-                    Height="30" Width="100" 
-                    FontSize="14"
-                    Content="DELETE" Foreground="White" 
-                    BorderThickness="0" Background="Transparent">
-            </Button>
-            
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Margin="20,20,0,0"  >
+
+                <!--Edit Button-->
+                <Button x:Name="editButton_click" Background="{x:Null}" BorderBrush="{x:Null}" Click="EditButton_Click" >
+                    <materialDesign:PackIcon Kind="EditOutline" Background="{x:Null}" Foreground="White"/>
+                </Button>
+                <!--viewList Button-->
+                <Button Margin="5,0,5,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="ListButton_Click" >
+                    <materialDesign:PackIcon Kind="ListBox" Background="{x:Null}" Foreground="White"/>
+                </Button>
+                <!--Delet Button-->
+                <Button Background="{x:Null}" BorderBrush="{x:Null}" >
+                    <materialDesign:PackIcon Kind="DeleteOutline" Background="{x:Null}" Foreground="White"/>
+                </Button>
+
+            </StackPanel>
         </StackPanel>
         <!--Buttons-->
+        <!--Header-->
 
         <!--Search Bar-->
         <StackPanel Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" MaxWidth="1000">
-            <Border Background="White" Margin="20,30,20,30" Opacity="0.7"  CornerRadius="30">
-                <TextBox Grid.ColumnSpan="2"
+            <Border Background="WhiteSmoke" Margin="20,20,20,16" Opacity="0.65"  CornerRadius="20">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Grid.ColumnSpan="2"
                      Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" 
                      Margin="30,20,20,20"
                      Text="Search Book"
                      FontSize="20" 
                      FontFamily="Century Gothic" 
-                     Foreground="#FF503612"
+                     Foreground="#FF503612" 
                      BorderThickness="0"
                      BorderBrush="Transparent"
                      Background="Transparent">
-                </TextBox>
+                    </TextBox>
+                    <materialDesign:PackIcon Kind="Search" Background="{x:Null}" Foreground="#FF503612" Height="35" Width="35" VerticalAlignment="Center" Margin="140,0,0,0"/>
+                </StackPanel>
             </Border>
-            <Button 
-                    Height="30" Width="80" 
-                    Content="Search">
-            </Button>
+            <!--Confirm Button-->
+            <Border Height="30" Width="80" Margin="10" CornerRadius="10" Background="#FF5F731D">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="2"
+                                      Direction="-90"
+                                      Color="#FF303E1F"/>
+                </Border.Effect>
+                <!--Confirm Button-->
+                <Button BorderBrush="{x:Null}" Background="{x:Null}"
+                    Content="search" Foreground="White" Focusable="False">
+                </Button>
+            </Border>
+            
         </StackPanel>
         <!--Search Bar-->
        

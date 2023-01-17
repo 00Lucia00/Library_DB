@@ -25,14 +25,14 @@ namespace Library_DB
             InitializeComponent();
         }
 
-        private void ButnClick1(object sender, RoutedEventArgs e)
-        {
-            Main.Content = new ListBooks();
-        }
-
-        private void BtnClick2(object sender, RoutedEventArgs e)
+        private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             Main.Content = new AddBook();
+        }
+
+        private void ListButton_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new ListBooks();
         }
     }
 }
