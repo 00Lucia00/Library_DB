@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Library_DB"
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="420"
@@ -17,7 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
-       
+
         <Border Width="250"
                 Grid.ColumnSpan="2"
                 VerticalAlignment="Bottom" 
@@ -38,53 +39,101 @@
                        FontSize="22" 
                        VerticalAlignment="Bottom"  Margin="0,0,0,8">
             </TextBlock>
+            <ListView Background="Transparent">
+                <ListViewItem Height="45" Cursor="" IsSelected="True" Tag="Add Book">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="ArchiveAdd" Foreground="White"/>
+                        <TextBlock Text="ADD" Foreground="White" Margin="5,0,0,0"/>
+                    </StackPanel>
+                </ListViewItem>
+            </ListView>
         </StackPanel>
-        
+
         <!--enter data bars-->
         <StackPanel  Grid.Row="1"  MaxWidth="1000">
-            <Border Background="White" Margin="20,30,20,30" Opacity="0.7"  CornerRadius="30">
+            <!--Book TITLE-->
+            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
                 <TextBox Grid.ColumnSpan="2"
-                      Grid.Row="1" HorizontalAlignment="Stretch" 
-                     Margin="30,20,20,20"
+                      Grid.Row="1" 
+                     Margin="30,17,20,14"
                      Text="Book Title"
                      FontSize="20" 
                      FontFamily="Century Gothic" 
                      Foreground="#FF503612"
                      BorderThickness="0"
                      BorderBrush="Transparent"
-                     Background="Transparent">
-                </TextBox>
+                     Background="Transparent"/>
             </Border>
-            <Border Background="White" Margin="20,30,20,30" Opacity="0.7"  CornerRadius="30">
-                <TextBox Grid.ColumnSpan="2"
-                      Grid.Row="1" HorizontalAlignment="Stretch" 
-                     Margin="30,20,20,20"
-                     Text="Book Title"
+            <!--Book TITLE-->
+            <!--INT VALUES-->
+            <StackPanel Orientation="Horizontal">
+                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="20,10,10,10" CornerRadius="20" Height="58" Width="180">
+                    <TextBox 
+                     Grid.Row="1" VerticalAlignment="Center"
+                     Margin="20,10,10,10"
+                     Text="page amount"
                      FontSize="20" 
                      FontFamily="Century Gothic" 
                      Foreground="#FF503612"
                      BorderThickness="0"
                      BorderBrush="Transparent"
                      Background="Transparent">
-                </TextBox>
-            </Border>
-            <Border Background="White" Margin="20,30,20,30" Opacity="0.7"  CornerRadius="30">
-                <TextBox Grid.ColumnSpan="2"
-                      Grid.Row="1" HorizontalAlignment="Stretch" 
-                     Margin="30,20,20,20"
-                     Text="Book Title"
+                    </TextBox>
+                </Border>
+                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="0,10,10,10" CornerRadius="20" Height="58" Width="185">
+                    <TextBox 
+                     Grid.Row="1" 
+                     Margin="20,10,10,10" VerticalAlignment="Center"
+                     Text="publiched year"
                      FontSize="20" 
                      FontFamily="Century Gothic" 
                      Foreground="#FF503612"
                      BorderThickness="0"
                      BorderBrush="Transparent"
-                     Background="Transparent">
-                </TextBox>
+                     Background="Transparent" Width="186">
+                    </TextBox>
+                </Border>
+            </StackPanel>
+            <!--INT VALUES-->
+
+            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
+                <TextBox Grid.ColumnSpan="2" 
+                      Grid.Row="1" 
+                     Margin="30,15,20,14"
+                     Text="Category"
+                     FontSize="20" 
+                     FontFamily="Century Gothic" 
+                     Foreground="#FF503612"
+                     BorderThickness="0"
+                     BorderBrush="Transparent"
+                     Background="Transparent" TextChanged="TextBox_TextChanged"/>
             </Border>
-            <Button 
-                    Height="30" Width="80" 
-                    Content="confirm">
-            </Button>
+            <Border Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
+                <TextBox Grid.ColumnSpan="2"
+                     Grid.Row="1" 
+                     Margin="30,14,20,15"
+                     Text="Author"
+                     FontSize="20" 
+                     FontFamily="Century Gothic" 
+                     Foreground="#FF503612"
+                     BorderThickness="0"
+                     BorderBrush="Transparent"
+                     Background="Transparent"/>
+            </Border>
+            <Border Height="30" Width="30" Margin="10" CornerRadius="30" Background="#FF5F731D">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="2"
+                                      Direction="-90"
+                                      Color="#FF303E1F"/>
+                </Border.Effect>
+
+                <Button BorderThickness="0" Background="Transparent"
+                    Height="30" Width="30" 
+                    Focusable="False">
+                    <materialDesign:PackIcon Kind="Check" Foreground="White" />
+                </Button>
+            </Border>
         </StackPanel>
     </Grid>
 </Page>
