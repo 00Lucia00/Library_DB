@@ -10,33 +10,41 @@
       Title="ListBooks">
 
     <Grid Background="#FF35291B">
-        <!--
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF3E2D17" Offset="0.024"/>
-                <GradientStop Color="#FFB19776" Offset="0.976"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        -->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
+
         <!--Lista Över Böcker-->
         <StackPanel Grid.Row="2">
             <DataGrid  Margin="10" Height="320" d:ItemsSource="{d:SampleData ItemCount=15}"/>
         </StackPanel>
-        
+
         <StackPanel Grid.Row="1">
             <Image Width="100" Height="150" Margin="0,20,0,0" Source="/Resources/icon4.png" ></Image>
             <TextBlock Name="listBooksTB1" Margin="0,0,0,30" VerticalAlignment="Bottom"
                        FontSize="18" FontFamily="Century Gothic" Foreground="White"
-                       Text="BOOK TITEL" TextAlignment="Center"></TextBlock>
+                       Text="BOOK TITEL" TextAlignment="Center">
+
+            </TextBlock>
+            <StackPanel HorizontalAlignment="Right" Margin="-20,-20,30,-1">
+                <Border Height="30" Width="30" CornerRadius="30" Background="#FF5F731D">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="2"
+                                      Direction="-90"
+                                      Color="#FF303E1F"/>
+                    </Border.Effect>
+                    <Button  
+                            Background="{x:Null}" BorderBrush="{x:Null}" 
+                            ToolTip="Delete book" Width="29" >
+                        <materialDesign:PackIcon Kind="Delete" Width="22" Height="25" Background="{x:Null}" Foreground="White"/>
+                    </Button>
+                </Border>
+            </StackPanel>
+
         </StackPanel>
-       
+
     </Grid>
 </Page>
