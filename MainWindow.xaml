@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Library_DB"
         mc:Ignorable="d"
         Title="Your Library" Icon="/icon1.png" Background="{x:Null}" 
-        Height="655" Width="425" WindowStartupLocation="CenterScreen"  ResizeMode="CanMinimize">
+        Height="658" Width="425" WindowStartupLocation="CenterScreen"  ResizeMode="CanMinimize">
 
 
     <Grid Background="Transparent">

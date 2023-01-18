@@ -6,7 +6,7 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Library_DB"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="420"
+      d:DesignHeight="655" d:DesignWidth="420"
       Title="AddBook">
 
     <Grid Background="#FF35291B">
@@ -16,7 +16,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="200"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="400"/>
         </Grid.RowDefinitions>
         
         <DataGrid Grid.Row="1" Margin="20" 
