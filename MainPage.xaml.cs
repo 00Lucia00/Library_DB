@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace Library_DB
 {
     /// <summary>
-    /// Interaction logic for ListBooks.xaml
+    /// Interaction logic for MainPage.xaml
     /// </summary>
-    public partial class ListBooks : Page
+    public partial class MainPage : Page
     {
-        public ListBooks()
+        public MainPage()
         {
             InitializeComponent();
-        }
-
-        private void SearchButton_click(object sender, RoutedEventArgs e)
-        {
-         
         }
     }
 }

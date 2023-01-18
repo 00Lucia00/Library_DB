@@ -37,42 +37,6 @@
                        FontSize="18" FontFamily="Century Gothic" Foreground="White"
                        Text="BOOK TITEL" TextAlignment="Center"></TextBlock>
         </StackPanel>
-        <Border Width="250"
-                Grid.ColumnSpan="2"
-                VerticalAlignment="Bottom" 
-                HorizontalAlignment="Left"
-                BorderBrush="White" 
-                BorderThickness="1"
-                Margin="15,0,0,0" >
-        </Border>
-
-        <!--Header-->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" >
-            <Image Source="/Resources/icon2.png" 
-                   Width="30" Height="30" Panel.ZIndex="1" 
-                   OpacityMask="Black" 
-                   Margin="15,10,5,5"/>
-            <TextBlock Grid.Row="0" Grid.Column ="0"
-                       Text="Your Book Shelf" Foreground="White"
-                       FontFamily="Century Gothic" FontWeight="Light"
-                       FontSize="22" 
-                       VerticalAlignment="Bottom"  Margin="0,0,0,8">
-            </TextBlock>
-
-            <StackPanel Orientation="Horizontal" Margin="100,0,0,0">
-                <!--Edit Button-->
-                <Button Margin="25,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="Search" Background="{x:Null}" Foreground="White"/>
-                </Button>
-                <!--viewList Button-->
-                <Button Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="ListBox" Background="{x:Null}" Foreground="White"/>
-                </Button>
-                <!--Delet Button-->
-                <Button Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="DeleteOutline" Background="{x:Null}" Foreground="White"/>
-                </Button>
-            </StackPanel>
-        </StackPanel>
+       
     </Grid>
 </Page>

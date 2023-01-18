@@ -15,50 +15,22 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
-        <Border Width="250"
-                Grid.ColumnSpan="2"
-                VerticalAlignment="Bottom" 
-                HorizontalAlignment="Left"
-                BorderBrush="White" 
-                BorderThickness="1"
-                Margin="15,0,0,0" >
-        </Border>
-
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" >
-            <Image Source="/Resources/icon2.png" 
-                   Width="30" Height="30" Panel.ZIndex="1" 
-                   OpacityMask="Black" 
-                   Margin="15,10,5,5"/>
-            <TextBlock Grid.Row="0" Grid.Column ="0"
-                       Text="Your Book Shelf" Foreground="White"
-                       FontFamily="Century Gothic" FontWeight="Light"
-                       FontSize="22" 
-                       VerticalAlignment="Bottom"  Margin="0,0,0,8">
-            </TextBlock>
-            <StackPanel Orientation="Horizontal" Margin="100,0,0,0"> 
-                <!--Edit Button-->
-                <Button Margin="25,0,0,0" Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="Search" Background="{x:Null}" Foreground="White"/>
-                </Button>
-                <!--viewList Button-->
-                <Button Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="ListBox" Background="{x:Null}" Foreground="White"/>
-                </Button>
-                <!--Delet Button-->
-                <Button Background="{x:Null}" BorderBrush="{x:Null}" >
-                    <materialDesign:PackIcon Kind="DeleteOutline" Background="{x:Null}" Foreground="White"/>
-                </Button>
-            </StackPanel>
-        </StackPanel>
+        
+        <DataGrid Grid.Row="1" Margin="20" 
+                  Background="Transparent" Foreground="#FF503612" 
+                  BorderThickness="3" BorderBrush="DimGray" 
+                  d:ItemsSource="{d:SampleData ItemCount=6}">
+            
+        </DataGrid>
 
         <!--enter data bars-->
-        <StackPanel  Grid.Row="1"  MaxWidth="1000">
+        <StackPanel  Grid.Row="2"  MaxWidth="1000">
             <!--Book TITLE-->
-            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
+            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
+                     Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
                 <TextBox Grid.ColumnSpan="2"
                       Grid.Row="1" 
                      Margin="30,14,20,14"
@@ -73,7 +45,8 @@
             <!--Book TITLE-->
             <!--INT VALUES-->
             <StackPanel Orientation="Horizontal">
-                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="20,10,10,10" CornerRadius="20" Height="58" Width="180">
+                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
+                         Opacity="0.7" Margin="20,10,10,10" CornerRadius="20" Height="58" Width="180">
                     <TextBox 
                      Grid.Row="1" VerticalAlignment="Center" Margin="20,10,10,10"
                      

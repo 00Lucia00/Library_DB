@@ -23,6 +23,7 @@ namespace Library_DB
         public MainWindow()
         {
             InitializeComponent();
+            Main.Content = new MainPage();
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -34,5 +35,12 @@ namespace Library_DB
         {
             Main.Content = new ListBooks();
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            Main.Content = new MainPage();
+        }
+
+       
     }
 }
