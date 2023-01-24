@@ -31,6 +31,38 @@ namespace Library_DB
 
         }
 
-      
+        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(favoSlider.Value == 0 || favoSlider.Value == 1)
+            {
+                favoLabl.Content = "LIKED";
+            }
+            else if(favoSlider.Value == 2)
+            {
+                favoLabl.Content = "Quite Favored";
+            }
+            else if (favoSlider.Value == 3 )
+            {
+                favoLabl.Content = "Favored";
+            } 
+            else if (favoSlider.Value == 4 )
+            {
+                favoLabl.Content = "Very Favored";
+            }
+        }
+
+        private void favoChecked(object sender, RoutedEventArgs e)
+        {
+            if(favoCheck.IsChecked == true)
+            {
+                favoSlider.IsEnabled = true;
+
+            }
+            else if(favoCheck.IsChecked == false)
+            {
+                favoSlider.IsEnabled = false;
+            }
+
+        }
     }
 }

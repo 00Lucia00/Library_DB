@@ -30,7 +30,9 @@
                      BorderThickness="0"
                      BorderBrush="Transparent"
                      Background="Transparent" Width="229"/>
-                    <materialDesign:PackIcon Kind="Search" Background="{x:Null}" Foreground="#FF503612" Height="35" Width="35" VerticalAlignment="Center" Margin="40,0,0,0"/>
+                    
+                    <materialDesign:PackIcon Kind="Search" Background="{x:Null}" Foreground="#FF503612" 
+                                             Height="35" Width="35" VerticalAlignment="Center" Margin="40,0,0,0"/>
                 </StackPanel>
             </Border>
             <!--Confirm Button-->

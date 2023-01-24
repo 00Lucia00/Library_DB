@@ -39,7 +39,7 @@
                     <Button  
                             Background="{x:Null}" BorderBrush="{x:Null}" 
                             ToolTip="Delete book" Width="29" >
-                        <materialDesign:PackIcon Kind="Delete" Width="22" Height="25" Background="{x:Null}" Foreground="White"/>
+                        <materialDesign:PackIcon Kind="Delete" Width="22" Height="25" Background="{x:Null}" Foreground="White" ToolTip="Delete"/>
                     </Button>
                 </Border>
             </StackPanel>
