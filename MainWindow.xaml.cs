@@ -23,24 +23,11 @@ namespace Library_DB
     public partial class MainWindow : Window
     {
         
-        string filePath = @"C:\Users\tobia\OneDrive\Dokument\GitHub\Library_DB\Resources\lösen.txt";
-        
-        MySqlConnection conn;
+       
         public MainWindow()
         {
             InitializeComponent();
             Main.Content = new MainPage();
-
-            string passFile = File.ReadAllText(filePath);
-
-            string server = "localhost";
-            string database = "librarydbmodel";
-            string user = "root";
-            string pass = passFile;
-
-            //Establera kopplika till Database
-            string connString = $"SERVER={server};DATABASE={database};UID={user};PASSWORD={pass};";
-            conn = new MySqlConnection(connString);
         }
 
         private void EditButton_Click(object sender, RoutedEventArgs e)

@@ -1,5 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,25 +22,59 @@ namespace Library_DB
     /// Interaction logic for ListBooks.xaml
     /// </summary>
     public partial class ListBooks : Page
-    {
+    { 
+        
+        MySqlConnection conn;
+        string filePath = @"C:\Users\tobia\OneDrive\Dokument\GitHub\Library_DB\Resources\lösen.txt";
+        private const string z = "book_title";
+        private const string y = "idBooks";
+        private const string x = "page_amount";
+
         public ListBooks()
         {
+            
             InitializeComponent();
-        }
+            string passFile = File.ReadAllText(filePath);
 
-        private void SearchButton_click(object sender, RoutedEventArgs e)
+            string server = "localhost";
+            string database = "librarydbmodel";
+            string user = "root";
+            string pass = passFile;
+
+            //Establera kopplika till Database
+            string connString = $"SERVER={server};DATABASE={database};UID={user};PASSWORD={pass};";
+            conn = new MySqlConnection(connString);
+
+            string SQLquerry = "CALL SelectBooks();";
+
+            MySqlCommand cmd = new MySqlCommand(SQLquerry, conn);
+            try
+            {
+                conn.Open();
+                
+                MySqlDataReader reader = cmd.ExecuteReader();
+                
+                DataTable dataTable = new DataTable("books");
+                dataTable.Load(reader);
+                conn.Close();
+
+                BooksGrid.DataContext = dataTable;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+        }
+        
+       
+
+        private void showData(object sender, RoutedEventArgs e)
         {
-         
+            
+            
         }
-
-        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void DataGridCheckBoxColumn_Selected(object sender, RoutedEventArgs e)
-        {
-
-        }
+       
+        
     }
 }

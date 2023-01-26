@@ -9,7 +9,7 @@
       Height="640" Width="420"
       Title="MainPage">
     <Page.Background>
-        <ImageBrush ImageSource="/Resources/bakgrund1.jpg"></ImageBrush>
+        <ImageBrush ImageSource="/Resources/Images/bakgrund1.jpg"></ImageBrush>
     </Page.Background>
     <Grid>
         <Grid.RowDefinitions>
@@ -45,7 +45,7 @@
                 </Border.Effect>
                 <!--Confirm Button-->
                 <Button BorderBrush="{x:Null}" Background="{x:Null}"
-                    Content="search" Foreground="White" Focusable="False">
+                    Content="Search" Foreground="White" Focusable="False">
                 </Button>
             </Border>
 

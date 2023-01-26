@@ -15,40 +15,44 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <!--Lista Över Böcker-->
         <StackPanel Grid.Row="2">
-            <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
-                      x:Name="BooksGrid" Margin="10" Height="320" SelectionChanged="DataGrid_SelectionChanged" Background="{x:Null}" BorderBrush="#FF566448">
-               
+
+            <DataGrid ItemsSource="{Binding}" x:Name="BooksGrid"
+                
+                      Style="{DynamicResource DataGridStyle1}" 
+                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      RowStyle="{DynamicResource DataGridRowStyle1}" 
+                      Margin="10" Height="320" AutoGenerateColumns="False"
+                      Background="{x:Null}" BorderBrush="#FF566448">
+               <!--Design Style-->
+                
+               <!--Header Design-->
                 <DataGrid.Columns>
-                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                    <DataGridCheckBoxColumn Width="25" CanUserResize="False">
                         <DataGridCheckBoxColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox/>
+                                <materialDesign:PackIcon Margin="5,0,0,0" Kind="Checkbook"/>
                             </DataTemplate>
                         </DataGridCheckBoxColumn.HeaderTemplate>
                     </DataGridCheckBoxColumn>
-                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"/>
-                    <DataGridTextColumn Width="*" Header= "Book Title" IsReadOnly="True"/>
-                    <DataGridTextColumn Width="*" Header="Pages" IsReadOnly="True"/>
-                    <DataGridTextColumn Width="*" Header="Author" IsReadOnly="True"/>
-                    <DataGridTextColumn Width="*" Header="Favored" IsReadOnly="True"/>
-                    <DataGridTextColumn Width="*" Header="Category" IsReadOnly="True"/>
-
+                    <DataGridTextColumn Binding="{Binding idBooks}" Header=" ID" IsReadOnly="True" Width="22" CanUserResize="False"/>
+                    <DataGridTextColumn Binding="{Binding book_title}" Width="*" Header= "   Book Title" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding page_amount}" Width="40" Header="Pages" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Author_name}" Width="*" Header="   Author" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Favorits_id}"  Width="40" Header="Favo" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding category_id}" Width="*" Header="Category" IsReadOnly="True"/>
+                    
                 </DataGrid.Columns>
-                
-                   
-                
             </DataGrid>
         </StackPanel>
-
+        <!-- Display -->
         <StackPanel Grid.Row="1">
-            <Image Width="100" Height="150" Margin="0,20,0,0" Source="/Resources/icon4.png" ></Image>
+            <Image Width="100" Height="150" Margin="0,20,0,0" Source="/Resources/Images/icon4.png" ></Image>
             <TextBlock Name="listBooksTB1" Margin="0,0,0,30" VerticalAlignment="Bottom"
                        FontSize="18" FontFamily="Century Gothic" Foreground="White"
                        Text="BOOK TITEL" TextAlignment="Center">
-
             </TextBlock>
             <StackPanel HorizontalAlignment="Right" Margin="-20,-20,30,-1">
                 <Border Height="30" Width="30" CornerRadius="30" Background="#FF5F731D">
@@ -60,7 +64,7 @@
                     </Border.Effect>
                     <Button  
                             Background="{x:Null}" BorderBrush="{x:Null}" 
-                            ToolTip="Delete book" Width="29" >
+                            ToolTip="Delete book" Width="29" Click="showData" >
                         <materialDesign:PackIcon Kind="Delete" Width="22" Height="25" Background="{x:Null}" Foreground="White" ToolTip="Delete"/>
                     </Button>
                 </Border>
