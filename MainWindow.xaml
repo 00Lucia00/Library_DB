@@ -3,10 +3,74 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Library_DB"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Your Library" Icon="/icon1.png" Background="{x:Null}" 
+        Height="658" Width="425" WindowStartupLocation="CenterScreen"  ResizeMode="CanMinimize">
 
+
+    <Grid Background="Transparent">
+        <Frame x:Name="Main" Grid.RowSpan="4" Width="Auto" Height="Auto" Grid.Row="0" NavigationUIVisibility="Hidden">
+        </Frame>
+        <!--Header-->
+        <Grid VerticalAlignment="Top" Height="50">
+            <!--Grid Design-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Border Width="250"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left"
+                BorderBrush="White" 
+                BorderThickness="1"
+                Margin="15,0,0,0" >
+            </Border>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"  Grid.ColumnSpan="2" >
+                <Image Source="/Resources/icon2.png" 
+                   Width="30" Height="30" Panel.ZIndex="1" 
+                   OpacityMask="Black" 
+                   Margin="15,10,5,5"/>
+                <TextBlock Grid.Row="0" Grid.Column ="0"
+                       Text="Your Book Shelf" Foreground="White"
+                       FontFamily="Century Gothic" FontWeight="Light"
+                       FontSize="22" 
+                       VerticalAlignment="Bottom"  Margin="0,0,0,8">
+                </TextBlock>
+            </StackPanel>
+            <!--Buttons-->
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <StackPanel Orientation="Horizontal" Margin="10,20,0,0"  >
+                    <!--Edit Button-->
+                    <Button x:Name="editButton" Background="{x:Null}" BorderBrush="{x:Null}" Click="EditButton_Click" ToolTip="Edit book list" >
+                        <materialDesign:PackIcon Kind="EditOutline" Width="20" Height="20" Background="{x:Null}" Foreground="White"/>
+                    </Button>
+                    <!--viewList Button-->
+                    <Button Margin="5,0,5,0" Background="{x:Null}" BorderBrush="{x:Null}" Click="ListButton_Click" ToolTip="See available books" >
+                        <materialDesign:PackIcon Kind="ListBox"  Width="20" Height="20" Background="{x:Null}" Foreground="White"/>
+                    </Button>
+                    <!--Delet Button-->
+                    <Button Background="{x:Null}" BorderBrush="{x:Null}" Click="SearchButton_Click" ToolTip="Search book" >
+                        <materialDesign:PackIcon Kind="Search"  Width="20" Height="20" Background="{x:Null}" Foreground="White"/>
+                    </Button>
+
+                </StackPanel>
+            </StackPanel>
+            <!--Buttons-->
+        </Grid>
+        <!--Header-->
+
+        
+
+        <!--Grid Design-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!--Grid Design-->
     </Grid>
+
 </Window>
