@@ -1,0 +1,137 @@
+﻿<Page x:Class="Library_DB.AddBook"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:local="clr-namespace:Library_DB"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="420"
+      Title="AddBook">
+
+    <Grid Background="#FF35291B">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <DataGrid Grid.Row="1" Margin="20" 
+                  Background="Transparent" Foreground="#FF503612" 
+                  BorderThickness="3" BorderBrush="DimGray" 
+                  d:ItemsSource="{d:SampleData ItemCount=6}">
+            
+        </DataGrid>
+
+        <!--enter data bars-->
+        <StackPanel  Grid.Row="2"  MaxWidth="1000">
+            <!--Book TITLE-->
+            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
+                     Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
+                <TextBox Grid.ColumnSpan="2"
+                      Grid.Row="1" 
+                     Margin="30,14,20,14"
+                     Text="Book Title"
+                     FontSize="20" 
+                     FontFamily="Century Gothic" 
+                     Foreground="#FF503612"
+                     BorderThickness="0"
+                     BorderBrush="Transparent"
+                     Background="Transparent"/>
+            </Border>
+            <!--Book TITLE-->
+            <!--INT VALUES-->
+            <StackPanel Orientation="Horizontal">
+                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
+                         Opacity="0.7" Margin="20,10,10,10" CornerRadius="20" Height="58" Width="180">
+                    <TextBox 
+                     Grid.Row="1" VerticalAlignment="Center" Margin="20,10,10,10"
+                     
+                     Text="Page amount" Foreground="#FF503612"
+                     FontSize="19" FontFamily="Century Gothic" 
+                     
+                     BorderThickness="0"
+                     BorderBrush="Transparent"
+                     Background="Transparent">
+                    </TextBox>
+                </Border>
+                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="0,10,10,10" CornerRadius="20" Height="58" Width="185">
+                    <TextBox 
+                     Grid.Row="1" VerticalAlignment="Center" Margin="20,10,10,10"
+                     
+                     Text="Publishing year" Foreground="#FF503612"
+                     FontSize="19" FontFamily="Century Gothic" 
+                     
+                     BorderThickness="0"
+                     BorderBrush="Transparent"
+                     Background="Transparent">
+                    </TextBox>
+                </Border>
+            </StackPanel>
+            <!--INT VALUES-->
+
+            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
+                <TextBox Grid.ColumnSpan="2" 
+                      Grid.Row="1" 
+                     Margin="30,15,20,14"
+                     Text="Category"
+                     FontSize="20" 
+                     FontFamily="Century Gothic" 
+                     Foreground="#FF503612"
+                     BorderThickness="0"
+                     BorderBrush="Transparent"
+                     Background="Transparent" TextChanged="TextBox_TextChanged"/>
+            </Border>
+
+            <Border Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
+
+                <TextBox Grid.ColumnSpan="2"
+                     Grid.Row="1" 
+                     Margin="30,14,20,15"
+                     Text="Author"
+                     FontSize="20" 
+                     FontFamily="Century Gothic" 
+                     Foreground="#FF503612"
+                     BorderThickness="0"
+                     BorderBrush="Transparent">
+                    
+                </TextBox>
+            </Border>
+            
+            <!--Confirm Button-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Border Height="30" Width="30" Margin="10" CornerRadius="30" Background="#FF5F731D">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="2"
+                                      Direction="-90"
+                                      Color="#FF303E1F"/>
+                    </Border.Effect>
+                    <Button BorderBrush="{x:Null}" Background="{x:Null}"
+                    Height="30" Width="30" 
+                    Focusable="False">
+                        <materialDesign:PackIcon Kind="Check" Foreground="White" />
+                    </Button>
+                </Border>
+                <Border Height="30" Width="30" Margin="10" CornerRadius="30" Background="#FF5F731D">
+                    <Border.Effect>
+                        <DropShadowEffect BlurRadius="10"
+                                      ShadowDepth="2"
+                                      Direction="-90"
+                                      Color="#FF303E1F"/>
+                    </Border.Effect>
+                    <!--Confirm Button-->
+                    <Button BorderBrush="{x:Null}" Background="{x:Null}"
+                    Height="30" Width="30" 
+                    Focusable="False">
+                        <materialDesign:PackIcon Kind="Update" Foreground="White" />
+                    </Button>
+                </Border>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</Page>
