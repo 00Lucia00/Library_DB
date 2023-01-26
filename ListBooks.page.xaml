@@ -18,7 +18,29 @@
 
         <!--Lista Över Böcker-->
         <StackPanel Grid.Row="2">
-            <DataGrid  Margin="10" Height="320" d:ItemsSource="{d:SampleData ItemCount=15}"/>
+            <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" 
+                      x:Name="BooksGrid" Margin="10" Height="320" SelectionChanged="DataGrid_SelectionChanged" Background="{x:Null}" BorderBrush="#FF566448">
+               
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn CanUserResize="False" Width="auto">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Header="ID" IsReadOnly="True" CanUserResize="False" Width="auto"/>
+                    <DataGridTextColumn Width="*" Header= "Book Title" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="*" Header="Pages" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="*" Header="Author" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="*" Header="Favored" IsReadOnly="True"/>
+                    <DataGridTextColumn Width="*" Header="Category" IsReadOnly="True"/>
+
+                </DataGrid.Columns>
+                
+                   
+                
+            </DataGrid>
         </StackPanel>
 
         <StackPanel Grid.Row="1">

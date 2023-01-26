@@ -78,7 +78,7 @@
                 <ComboBox Margin="11,6,11,4" Foreground="#FF503612"
                           Background="Transparent"  BorderBrush="Transparent" BorderThickness="0" 
                           Focusable="False" FontFamily="Century Gothic" FontSize="19"
-                           ItemsSource="{Binding ElementName=}" >
+                           >
 
                 </ComboBox>
                 <!--<TextBox Grid.ColumnSpan="2" 

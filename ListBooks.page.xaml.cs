@@ -29,5 +29,15 @@ namespace Library_DB
         {
          
         }
+
+        private void DataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DataGridCheckBoxColumn_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
