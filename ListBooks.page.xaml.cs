@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,7 +31,9 @@ namespace Library_DB
         private const string y = "idBooks";
         private const string x = "page_amount";
 
-        public ListBooks()
+        int id; // - id variable that saves id from row that is being selected
+
+        public ListBooks() //Construktor
         {
             
             InitializeComponent();
@@ -41,21 +44,28 @@ namespace Library_DB
             string user = "root";
             string pass = passFile;
 
-            //Establera kopplika till Database
             string connString = $"SERVER={server};DATABASE={database};UID={user};PASSWORD={pass};";
             conn = new MySqlConnection(connString);
+            getTable();
+        }
 
-            string SQLquerry = "CALL SelectBooks();";
+        public void getTable()
+        {
+            //Establera kopplika till Database
+            
+
+            string SQLquerry = "CALL SelectBooksWithAuthors();";
 
             MySqlCommand cmd = new MySqlCommand(SQLquerry, conn);
             try
             {
                 conn.Open();
-                
+
                 MySqlDataReader reader = cmd.ExecuteReader();
-                
+
                 DataTable dataTable = new DataTable("books");
                 dataTable.Load(reader);
+                //BooksGrid.ItemSource = dataTable.DefaultView
                 conn.Close();
 
                 BooksGrid.DataContext = dataTable;
@@ -64,17 +74,55 @@ namespace Library_DB
             {
                 MessageBox.Show(e.Message);
             }
-
         }
         
-       
-
-        private void showData(object sender, RoutedEventArgs e)
+        private void grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            
+            id = getSelectedRow(sender);
+            delButton.IsEnabled = true;
         }
-       
-        
+        private int getSelectedRow(object sender)
+        {
+            DataGrid dg = (DataGrid)sender;
+            if (dg.SelectedItem is DataRowView rowSelected)
+            {
+                int id = Convert.ToInt32(rowSelected.Row.ItemArray[0]);
+                return id;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        private void DeleteData_click(object sender, RoutedEventArgs e)
+        {
+            deleteData(id);
+        }
+        public void deleteData(int id)
+        {
+            if (BooksGrid.SelectedItems.Count != 1) return;
+
+            try
+            {
+                //Öppna kommunimation
+                conn.Open();
+
+                string SQLQuerry = $"CALL DeleteBook({id});";
+                // MySQL Command
+                MySqlCommand cmd = new MySqlCommand(SQLQuerry, conn);
+
+                //Exekvera command
+                cmd.ExecuteReader();
+
+                MessageBox.Show("Deleted Successfully!");
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            getTable();
+        }
     }
 }

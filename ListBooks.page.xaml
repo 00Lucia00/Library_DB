@@ -19,13 +19,14 @@
         <StackPanel Grid.Row="2">
 
             <DataGrid ItemsSource="{Binding}" x:Name="BooksGrid"
+                            SelectedItem="{Binding Path=Selected, Mode=TwoWay}" CanUserDeleteRows="True"
                 
                       Style="{DynamicResource DataGridStyle1}" 
                       CellStyle="{DynamicResource DataGridCellStyle1}"
                       ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
                       RowStyle="{DynamicResource DataGridRowStyle1}" 
                       Margin="10" Height="320" AutoGenerateColumns="False"
-                      Background="{x:Null}" BorderBrush="#FF566448">
+                      Background="{x:Null}" BorderBrush="#FF566448" SelectionChanged="grid_SelectionChanged">
                <!--Design Style-->
                 
                <!--Header Design-->
@@ -62,9 +63,9 @@
                                       Direction="-90"
                                       Color="#FF303E1F"/>
                     </Border.Effect>
-                    <Button  
+                    <Button  x:Name="delButton" IsEnabled="False"
                             Background="{x:Null}" BorderBrush="{x:Null}" 
-                            ToolTip="Delete book" Width="29" Click="showData" >
+                            ToolTip="Delete book" Width="29" Click="DeleteData_click" >
                         <materialDesign:PackIcon Kind="Delete" Width="22" Height="25" Background="{x:Null}" Foreground="White" ToolTip="Delete"/>
                     </Button>
                 </Border>
