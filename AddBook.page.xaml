@@ -31,7 +31,7 @@
             <!--Book TITLE-->
             <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
                      Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
-                <TextBox Grid.ColumnSpan="2"
+                <TextBox x:Name="TitleTbx" Grid.ColumnSpan="2"
                       Grid.Row="1" 
                      Margin="30,14,20,14"
                      Text="Book Title"
@@ -40,14 +40,14 @@
                      Foreground="#FF503612"
                      BorderThickness="0"
                      BorderBrush="Transparent"
-                     Background="Transparent"/>
+                     Background="Transparent" IsMouseDirectlyOverChanged="TitleTbx_IsMouseDirectlyOverChanged" />
             </Border>
             <!--Book TITLE-->
             <!--INT VALUES-->
             <StackPanel Orientation="Horizontal">
                 <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
                          Opacity="0.7" Margin="20,10,10,10" CornerRadius="20" Height="58" Width="180">
-                    <TextBox 
+                    <TextBox x:Name="pageTbx"
                      Grid.Row="1" VerticalAlignment="Center" Margin="20,10,10,10"
                      
                      Text="Page amount" Foreground="#FF503612"
@@ -55,11 +55,10 @@
                      
                      BorderThickness="0"
                      BorderBrush="Transparent"
-                     Background="Transparent">
-                    </TextBox>
+                     Background="Transparent" IsMouseDirectlyOverChanged="pageTbx_IsMouseDirectlyOverChanged"/>
                 </Border>
                 <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="0,10,10,10" CornerRadius="20" Height="58" Width="185">
-                    <TextBox 
+                    <TextBox x:Name="yearTbx"
                      Grid.Row="1" VerticalAlignment="Center" Margin="20,10,10,10"
                      
                      Text="Publishing year" Foreground="#FF503612"
@@ -67,8 +66,7 @@
                      
                      BorderThickness="0"
                      BorderBrush="Transparent"
-                     Background="Transparent">
-                    </TextBox>
+                     Background="Transparent" IsMouseDirectlyOverChanged="yearTbx_IsMouseDirectlyOverChanged"/>
                 </Border>
             </StackPanel>
             <!--INT VALUES-->
@@ -95,21 +93,22 @@
 
             <Border Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
 
-                <TextBox Grid.ColumnSpan="2"
-                     Grid.Row="1" 
+                <TextBox x:Name="authorTbx"
+                    Grid.ColumnSpan="2" Grid.Row="1" 
                      Margin="30,14,20,15"
                      Text="Author"
                      FontSize="20" 
                      FontFamily="Century Gothic" 
                      Foreground="#FF503612"
                      BorderThickness="0"
-                     BorderBrush="Transparent">
-
-                </TextBox>
+                     BorderBrush="Transparent" IsMouseDirectlyOverChanged="authorTbx_IsMouseDirectlyOverChanged"/>
             </Border>
+            <!--TEXT BOX-->
+            <!--Slider-->
             <StackPanel Orientation="Horizontal">
                 <CheckBox x:Name="favoCheck" 
-                          Margin="30,12,0,10" Checked="favoChecked"></CheckBox>
+                          Margin="30,12,0,10" Checked="favoChecked">
+                </CheckBox>
                 <Slider x:Name="favoSlider" Width="200" 
                         Maximum="4" Cursor="Hand"
                         Margin="10,10,0,0" 
@@ -117,42 +116,29 @@
                         HorizontalAlignment="Center" HorizontalContentAlignment="Center" 
                         IsEnabled="False" ToolTip="is it a favorite?"
                         ValueChanged="Slider_ValueChanged" IsSnapToTickEnabled="True" Foreground="#FF4C4C4C" />
-                <Label x:Name="favoLabl" Content="favored?" 
+                <Label x:Name="favoLabl" Content="Favored?" 
                        FontSize="20" FontWeight="Light" 
-                       Foreground="White" Margin="10,0,0,0"></Label>
+                       Foreground="White" Margin="10,0,0,0">
+                </Label>
             </StackPanel>
-
-            <!--Confirm Button-->
+            <!--Slider-->
+            <!--Buttons-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Border Height="30" Width="30" Margin="10" CornerRadius="30" Background="#FF5F731D">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="10"
-                                      ShadowDepth="2"
-                                      Direction="-90"
-                                      Color="#FF303E1F"/>
-                    </Border.Effect>
-                    <Button BorderBrush="{x:Null}" Background="{x:Null}"
-                    Height="30" Width="30" 
+                <!--Confirm Button-->
+                <Button x:Name="confirmBtn" Style="{DynamicResource roundButton}"
+                    Background="#FF5F731D"
                     Focusable="False" ToolTip="Add book">
-                        <materialDesign:PackIcon Kind="Check" Foreground="White" />
-                    </Button>
-                </Border>
-                <Border Height="30" Width="30" Margin="10" CornerRadius="30" Background="#FF5F731D">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="10"
-                                      ShadowDepth="2"
-                                      Direction="-90"
-                                      Color="#FF303E1F"/>
-                    </Border.Effect>
-                    <!--Confirm Button-->
-                    <Button BorderBrush="{x:Null}" Background="{x:Null}"
-                    Height="30" Width="30" 
-                    Focusable="False">
-                        <materialDesign:PackIcon Kind="Update" Foreground="White" ToolTip="Update" />
-                    </Button>
-                </Border>
+                    <materialDesign:PackIcon Kind="Check" Foreground="White" />
+                </Button>
+                <!--Update Button-->
+                <Button x:Name="updateBtn1" Style="{DynamicResource roundButton}"
+                         Background="#FF5F731D" Margin="10" Focusable="False" ToolTip="Update book info" 
+                         Click="updateBtn1_Click">
+                    <materialDesign:PackIcon Kind="Update" Foreground="White"  />
+                </Button>
             </StackPanel>
-
+            <!--Buttons-->
         </StackPanel>
+        <Frame x:Name="Frame2" Grid.RowSpan="3" Width="auto" Height="auto" Grid.Row="0" />
     </Grid>
 </Page>

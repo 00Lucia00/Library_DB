@@ -24,14 +24,16 @@ namespace Library_DB
     /// </summary>
     public partial class ListBooks : Page
     { 
-        
         MySqlConnection conn;
         string filePath = @"C:\Users\tobia\OneDrive\Dokument\GitHub\Library_DB\Resources\lösen.txt";
         private const string z = "book_title";
         private const string y = "idBooks";
         private const string x = "page_amount";
 
-        int id; // - id variable that saves id from row that is being selected
+        private int idB;
+        public int getId() { return idB; }
+        // book ID- id variable that saves id from row that is being selected
+        int idA; // Author ID
 
         public ListBooks() //Construktor
         {
@@ -48,7 +50,6 @@ namespace Library_DB
             conn = new MySqlConnection(connString);
             getTable();
         }
-
         public void getTable()
         {
             //Establera kopplika till Database
@@ -75,13 +76,13 @@ namespace Library_DB
                 MessageBox.Show(e.Message);
             }
         }
-        
         private void grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            id = getSelectedRow(sender);
+            idB= getSelectedRowIDB(sender);
             delButton.IsEnabled = true;
+            UpdateBtn.IsEnabled = true;
         }
-        private int getSelectedRow(object sender)
+        private int getSelectedRowIDB(object sender)
         {
             DataGrid dg = (DataGrid)sender;
             if (dg.SelectedItem is DataRowView rowSelected)
@@ -94,10 +95,10 @@ namespace Library_DB
                 return -1;
             }
         }
-
+      
         private void DeleteData_click(object sender, RoutedEventArgs e)
         {
-            deleteData(id);
+            deleteData(idB);
         }
         public void deleteData(int id)
         {
@@ -120,9 +121,39 @@ namespace Library_DB
             }
             catch (Exception ex)
             {
+
                 MessageBox.Show(ex.Message);
             }
             getTable();
+        }
+
+        private void updateData_click(object sender, RoutedEventArgs e)
+        {
+            
+            Frame.Content = new AddBook(idB);
+
+            //if (BooksGrid.SelectedItems.Count != 1) return;
+
+            //try
+            //{
+            //    //Öppna kommunimation
+            //    conn.Open();
+
+            //    string SQLQuerry = $"CALL UpdateData_procedure({idB}, '{Title}', {pages}, {fav},'{AuthorName}');";
+            //    // MySQL Command
+            //    MySqlCommand cmd = new MySqlCommand(SQLQuerry, conn);
+
+            //    //Exekvera command
+            //    cmd.ExecuteReader();
+
+            //    MessageBox.Show("Updated Successfully!");
+            //    conn.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+            //getTable();
         }
     }
 }
