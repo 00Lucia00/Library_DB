@@ -70,7 +70,17 @@ namespace Library_DB
         }
         void insertToTable()
         {
+
+            string SQLquerry;
+            string nameA;
+            int page;
+            string nameB;
+            int year;
+            string nameL;
+            string cb2;
+            int favo;
             bool valid = true;
+
             foreach (TextBox textbox in txtBoxes)
             {
                 if (textbox.Text == "") //if box null then no insert to databas from that box
@@ -80,8 +90,10 @@ namespace Library_DB
                 else if(textbox.Text == "Author" || textbox.Text == "Pages" || textbox.Text == "Book Title" || textbox.Text == "Publishing year" || textbox.Text == "Language")
                 {
                     textbox.Text = null;
+                    MessageBox.Show("Unvalide input");
+                    return;
                 }
-                else if (typeCheckInt(txtBoxes[1].Text) != true  || typeCheckInt(txtBoxes[1].Text) != true)
+                else if (typeCheckInt(txtBoxes[1].Text) != true  || typeCheckInt(txtBoxes[3].Text) != true)
                 {
                     valid = false;
                     txtBoxes[1].Text = "Error";
@@ -90,21 +102,26 @@ namespace Library_DB
                     {
                         MessageBox.Show("Unvalid input! You can only write numbers here");
                     }
+                    return;
                 }
+                
             }
-
+            if (cbx2.SelectedItem == null)
+            {
+                MessageBox.Show("Unvalid input! must choose category");
+                return;
+            }
             //values from boxes to query
-            string nameA = authorTbx.Text;
-            int page = Convert.ToInt32(pageTbx.Text);
-            string nameB = TitleTbx.Text;
-            int year = Convert.ToInt32(yearTbx.Text);
-            string nameL = langTbx.Text;
-            string cb2 = cbx2.SelectedItem.ToString();
-            int favo = Convert.ToInt32(favoSlider.Value);
+            nameA = txtBoxes[0].Text;
+            page = Convert.ToInt32(txtBoxes[1].Text);
+            nameB = txtBoxes[2].Text;
+            year = Convert.ToInt32(txtBoxes[3].Text);
+            nameL = txtBoxes[4].Text;
+            cb2 = cbx2.SelectedItem.ToString();
+            favo = Convert.ToInt32(favoSlider.Value);
 
             //sqlQuery
-            string SQLquerry = $"CALL insert_toBooks('{nameB}', {page}, {year},'{nameA}','{cb2}',{favo},'{nameL}');";
-
+            SQLquerry = $"CALL insert_toBooks('{nameB}', {page}, {year},'{nameA}','{cb2}',{favo},'{nameL}');";
             MySqlCommand cmd = new MySqlCommand(SQLquerry, conn);
             try
             {

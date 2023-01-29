@@ -16,11 +16,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" MinHeight="45.965"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="560"/>
+            <RowDefinition Height="5"/>
+
         </Grid.RowDefinitions>
 
         <!--enter data bars-->
-        <StackPanel  Grid.Row="2"  >
+        <StackPanel  Grid.Row="2" Margin="-1,0,0,-25" Grid.RowSpan="3"  >
             <Border Margin="30,14,20,15" Height="55" Width="365"
                         Background="White" BorderThickness="2" BorderBrush="DimGray"
                         CornerRadius="20" Opacity="0.7">
@@ -126,6 +128,6 @@
             </StackPanel>
             <!--Buttons-->
         </StackPanel>
-        <Frame x:Name="Frame2" Grid.RowSpan="3" Width="auto" Height="auto" Grid.Row="0" Margin="0,0,0,-106"  />
+        <Frame x:Name="Frame2" Grid.RowSpan="5" Width="auto" Height="auto" Grid.Row="0" Margin="0,0,0,-33"  />
     </Grid>
 </Page>
