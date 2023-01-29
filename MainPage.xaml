@@ -6,16 +6,16 @@
        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:local="clr-namespace:Library_DB"
       mc:Ignorable="d" 
-      Height="641" Width="420"
+      Height="640" Width="420"
       Title="MainPage">
     <Page.Background>
-        <ImageBrush ImageSource="/Resources/bakgrund1.jpg"></ImageBrush>
+        <ImageBrush ImageSource="/Resources/Images/bakgrund1.jpg"></ImageBrush>
     </Page.Background>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="460"/>
+            <RowDefinition Height="130"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" VerticalAlignment="Center" MaxWidth="1000">
             <Border Background="WhiteSmoke" Margin="20,20,20,16" Opacity="0.65"  CornerRadius="20">
@@ -30,7 +30,9 @@
                      BorderThickness="0"
                      BorderBrush="Transparent"
                      Background="Transparent" Width="229"/>
-                    <materialDesign:PackIcon Kind="Search" Background="{x:Null}" Foreground="#FF503612" Height="35" Width="35" VerticalAlignment="Center" Margin="40,0,0,0"/>
+                    
+                    <materialDesign:PackIcon Kind="Search" Background="{x:Null}" Foreground="#FF503612" 
+                                             Height="35" Width="35" VerticalAlignment="Center" Margin="40,0,0,0"/>
                 </StackPanel>
             </Border>
             <!--Confirm Button-->
@@ -43,7 +45,7 @@
                 </Border.Effect>
                 <!--Confirm Button-->
                 <Button BorderBrush="{x:Null}" Background="{x:Null}"
-                    Content="search" Foreground="White" Focusable="False">
+                    Content="Search" Foreground="White" Focusable="False">
                 </Button>
             </Border>
 

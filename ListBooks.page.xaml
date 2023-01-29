@@ -8,43 +8,75 @@
       mc:Ignorable="d" 
       d:DesignHeight="650" d:DesignWidth="420"
       Title="ListBooks">
-
+  
     <Grid Background="#FF35291B">
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-
         <!--Lista Över Böcker-->
         <StackPanel Grid.Row="2">
-            <DataGrid  Margin="10" Height="320" d:ItemsSource="{d:SampleData ItemCount=15}"/>
-        </StackPanel>
 
+            <DataGrid ItemsSource="{Binding}" x:Name="BooksGrid"
+                            SelectedItem="{Binding Path=Selected, Mode=TwoWay}" CanUserDeleteRows="True"
+                
+                      Style="{DynamicResource DataGridStyle1}" 
+                      CellStyle="{DynamicResource DataGridCellStyle1}"
+                      ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}"
+                      RowStyle="{DynamicResource DataGridRowStyle1}" 
+                      Margin="10,0,10,30" Height="320" AutoGenerateColumns="False"
+                      Background="{x:Null}" BorderBrush="#FF566448" SelectionChanged="grid_SelectionChanged">
+               <!--Design Style-->
+                
+               <!--Header Design-->
+                <DataGrid.Columns>
+                    <DataGridCheckBoxColumn Width="30" CanUserResize="False">
+                        <DataGridCheckBoxColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <materialDesign:PackIcon Margin="5,0,0,0" Kind="Checkbook"/>
+                            </DataTemplate>
+                        </DataGridCheckBoxColumn.HeaderTemplate>
+                    </DataGridCheckBoxColumn>
+                    <DataGridTextColumn Binding="{Binding idBooks}" Header=" ID" IsReadOnly="True" Width="26" CanUserResize="False"/>
+                    <DataGridTextColumn Binding="{Binding book_title}" Width="*" Header= "   Book Title" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding page_amount}" Width="*" Header="Pages" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Author_name}" Width="*" Header="   Author" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding idFavorits}"  Width="*" Header="Favo" IsReadOnly="True"/>
+                    <!--<DataGridTextColumn Binding="{Binding category_id}" Width="*" Header="Category" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding idLanguages}" Width="*" Header="Language" IsReadOnly="True"/>-->
+                    
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        
+        <!-- Display -->
         <StackPanel Grid.Row="1">
-            <Image Width="100" Height="150" Margin="0,20,0,0" Source="/Resources/icon4.png" ></Image>
+            <Image Width="100" Height="150" Margin="0,20,0,0" Source="/Resources/Images/icon4.png" ></Image>
             <TextBlock Name="listBooksTB1" Margin="0,0,0,30" VerticalAlignment="Bottom"
                        FontSize="18" FontFamily="Century Gothic" Foreground="White"
                        Text="BOOK TITEL" TextAlignment="Center">
-
             </TextBlock>
-            <StackPanel HorizontalAlignment="Right" Margin="-20,-20,30,-1">
-                <Border Height="30" Width="30" CornerRadius="30" Background="#FF5F731D">
-                    <Border.Effect>
-                        <DropShadowEffect BlurRadius="10"
-                                      ShadowDepth="2"
-                                      Direction="-90"
-                                      Color="#FF303E1F"/>
-                    </Border.Effect>
-                    <Button  
-                            Background="{x:Null}" BorderBrush="{x:Null}" 
-                            ToolTip="Delete book" Width="29" >
-                        <materialDesign:PackIcon Kind="Delete" Width="22" Height="25" Background="{x:Null}" Foreground="White"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="-20,-20,30,5">
+                <!--delete Button-->
+                    <Button  x:Name="delButton" IsEnabled="False"
+                            Background="#FF5F731D" Style="{DynamicResource roundButton}" Margin="0,0,10,0"
+                            ToolTip="Delete book"  Click="DeleteData_click" >
+                        <materialDesign:PackIcon Kind="Delete" Width="22" Height="25" Background="{x:Null}" Foreground="White" />
                     </Button>
-                </Border>
+                <!--delete Button-->
+                    <!--update Button-->
+                <Button x:Name="UpdateBtn" IsEnabled="False"
+                        Background="#FF5F731D" Style="{DynamicResource roundButton}"
+                        ToolTip="Update book"
+                        Focusable="False" Click="updateData_click">
+                    <materialDesign:PackIcon Kind="Update" Foreground="White" />
+                </Button>
+                <!--update Button-->
             </StackPanel>
-
         </StackPanel>
 
+        <Frame x:Name="Frame" Grid.RowSpan="3" Width="auto" Height="auto" Grid.Row="0" />
     </Grid>
 </Page>

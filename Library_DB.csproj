@@ -8,7 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="icon1.png" />
     <None Remove="Resources\bakgrund1.jpg" />
     <None Remove="Resources\bakgrund2.jpg" />
     <None Remove="Resources\icon1.png" />
@@ -22,23 +21,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="icon1.png" />
-    <Resource Include="Resources\icon2.png">
+    <Resource Include="Resources\Images\icon2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\icon4.png">
+    <Resource Include="Resources\Images\icon4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Resources\bakgrund1.jpg">
+    <Resource Include="Resources\Images\bakgrund1.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\bakgrund2.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\icon1.png">
+    <Resource Include="Resources\Images\icon1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

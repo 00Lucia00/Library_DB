@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +22,8 @@ namespace Library_DB
     /// </summary>
     public partial class MainWindow : Window
     {
+        
+       
         public MainWindow()
         {
             InitializeComponent();
