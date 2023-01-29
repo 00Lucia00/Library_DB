@@ -24,21 +24,25 @@ namespace Library_DB
     /// </summary>
     public partial class ListBooks : Page
     { 
+       
         MySqlConnection conn;
-        string filePath = @"C:\Users\tobia\OneDrive\Dokument\GitHub\Library_DB\Resources\lösen.txt";
-        private const string z = "book_title";
-        private const string y = "idBooks";
-        private const string x = "page_amount";
 
-        private int idB;
-        public int getId() { return idB; }
-        // book ID- id variable that saves id from row that is being selected
-        int idA; // Author ID
+        AddBook ab;
+
+        int idB; // book ID- id variable that saves id from row that is being selected
+       
 
         public ListBooks() //Construktor
         {
             
             InitializeComponent();
+            ConnPath();
+            getTable();
+        }
+        public void ConnPath()
+        {
+
+            string filePath = @"C:\Users\tobia\OneDrive\Dokument\GitHub\Library_DB\Resources\lösen.txt";
             string passFile = File.ReadAllText(filePath);
 
             string server = "localhost";
@@ -48,15 +52,22 @@ namespace Library_DB
 
             string connString = $"SERVER={server};DATABASE={database};UID={user};PASSWORD={pass};";
             conn = new MySqlConnection(connString);
-            getTable();
+            
         }
-        public void getTable()
+        public void getTable(string key ="")
         {
             //Establera kopplika till Database
+
+            string SQLquerry;
+            if(key == "")
+            {
+                SQLquerry = $"CALL SelectBooksWithAuthors();";
+            }
+            else
+            {
+                SQLquerry = $"CALL Search_Title('{key}');";
+            }
             
-
-            string SQLquerry = "CALL SelectBooksWithAuthors();";
-
             MySqlCommand cmd = new MySqlCommand(SQLquerry, conn);
             try
             {
@@ -64,7 +75,7 @@ namespace Library_DB
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                DataTable dataTable = new DataTable("books");
+                DataTable dataTable = new DataTable();
                 dataTable.Load(reader);
                 //BooksGrid.ItemSource = dataTable.DefaultView
                 conn.Close();
@@ -79,10 +90,15 @@ namespace Library_DB
         private void grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             idB= getSelectedRowIDB(sender);
+
+            ab = new AddBook(idB);
+            putRowValues_inTxtbxes(sender);
+
             delButton.IsEnabled = true;
             UpdateBtn.IsEnabled = true;
+           
         }
-        private int getSelectedRowIDB(object sender)
+        private int getSelectedRowIDB(object sender) //gets id of row so that row can be changed
         {
             DataGrid dg = (DataGrid)sender;
             if (dg.SelectedItem is DataRowView rowSelected)
@@ -94,8 +110,24 @@ namespace Library_DB
             {
                 return -1;
             }
+        }  
+        private void putRowValues_inTxtbxes(object sender)
+       {
+            DataGrid dg = (DataGrid)sender;
+            if (dg.SelectedItem is DataRowView row_selected)
+            {
+                ab.TitleTbx.Text = row_selected["book_title"].ToString();
+                ab.pageTbx.Text = row_selected["page_amount"].ToString();
+                ab.authorTbx.Text = row_selected["Author_name"].ToString();
+                if (ab.favoSlider.Value != 0)
+                {
+                    int fav = Convert.ToInt32(ab.favoSlider.Value);
+                    fav = Convert.ToInt32(row_selected["favorits_id"].ToString());
+                    ab.favoSlider.IsEnabled = true;
+                    ab.favoCheck.IsChecked = true;
+                }
+            }
         }
-      
         private void DeleteData_click(object sender, RoutedEventArgs e)
         {
             deleteData(idB);
@@ -129,31 +161,8 @@ namespace Library_DB
 
         private void updateData_click(object sender, RoutedEventArgs e)
         {
-            
-            Frame.Content = new AddBook(idB);
-
-            //if (BooksGrid.SelectedItems.Count != 1) return;
-
-            //try
-            //{
-            //    //Öppna kommunimation
-            //    conn.Open();
-
-            //    string SQLQuerry = $"CALL UpdateData_procedure({idB}, '{Title}', {pages}, {fav},'{AuthorName}');";
-            //    // MySQL Command
-            //    MySqlCommand cmd = new MySqlCommand(SQLQuerry, conn);
-
-            //    //Exekvera command
-            //    cmd.ExecuteReader();
-
-            //    MessageBox.Show("Updated Successfully!");
-            //    conn.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //}
-            //getTable();
+            Frame.Content = ab;
+            ab.updateBtn1.IsEnabled =true;
         }
     }
 }

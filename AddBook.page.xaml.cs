@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Google.Protobuf.WellKnownTypes;
+using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Asn1.Ocsp;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,34 +23,36 @@ using System.Xml.Linq;
 
 namespace Library_DB
 {
-    /// <summary>
-    /// Interaction logic for AddBook.xaml
-    /// </summary>
+
     public partial class AddBook : Page
     {
+        ListBooks listPage = new ListBooks();
         //SQL comands //TODO put in maneger klass
         MySqlConnection conn;
-        string filePath = @"C:\Users\tobia\OneDrive\Dokument\GitHub\Library_DB\Resources\lösen.txt";
-
         int id; // book ID- id variable that saves id from row that is being selected
-        public AddBook(int id) //konstruktor med parameter
+        TextBox[] txtBoxes;
+        public AddBook(int id)  //konstruktor med parameter
         { 
             this.id = id;
             InitializeComponent();
-            string passFile = File.ReadAllText(filePath);
-
-            string server = "localhost";
-            string database = "librarydbmodel";
-            string user = "root";
-            string pass = passFile;
-
-            string connString = $"SERVER={server};DATABASE={database};UID={user};PASSWORD={pass};";
-            conn = new MySqlConnection(connString);
+            ConnPath();
+            
+            fillCombo();
+            txtBoxes = new TextBox[] { authorTbx, pageTbx, TitleTbx, yearTbx, langTbx};
         }
-        public AddBook()//konstruktor
+        public AddBook()  //konstruktor
         {
             
             InitializeComponent();
+            ConnPath();
+            
+            fillCombo();
+            txtBoxes = new TextBox[] { authorTbx, pageTbx, TitleTbx, yearTbx, langTbx };
+        }
+        public void ConnPath()
+        {
+
+            string filePath = @"C:\Users\tobia\OneDrive\Dokument\GitHub\Library_DB\Resources\lösen.txt";
             string passFile = File.ReadAllText(filePath);
 
             string server = "localhost";
@@ -57,98 +62,120 @@ namespace Library_DB
 
             string connString = $"SERVER={server};DATABASE={database};UID={user};PASSWORD={pass};";
             conn = new MySqlConnection(connString);
-        }
-    
 
+        }
+        private void confirmBtn_Click(object sender, RoutedEventArgs e)
+        {
+            insertToTable();
+        }
+        void insertToTable()
+        {
+            bool valid = true;
+            foreach (TextBox textbox in txtBoxes)
+            {
+                if (textbox.Text == "") //if box null then no insert to databas from that box
+                {
+                    textbox.Text = null;
+                }
+                else if(textbox.Text == "Author" || textbox.Text == "Pages" || textbox.Text == "Book Title" || textbox.Text == "Publishing year" || textbox.Text == "Language")
+                {
+                    textbox.Text = null;
+                }
+                else if (typeCheckInt(txtBoxes[1].Text) != true  || typeCheckInt(txtBoxes[1].Text) != true)
+                {
+                    valid = false;
+                    txtBoxes[1].Text = "Error";
+                    txtBoxes[3].Text = "Error";
+                    if(valid == false)
+                    {
+                        MessageBox.Show("Unvalid input! You can only write numbers here");
+                    }
+                }
+            }
+
+            //values from boxes to query
+            string nameA = authorTbx.Text;
+            int page = Convert.ToInt32(pageTbx.Text);
+            string nameB = TitleTbx.Text;
+            int year = Convert.ToInt32(yearTbx.Text);
+            string nameL = langTbx.Text;
+            string cb2 = cbx2.SelectedItem.ToString();
+            int favo = Convert.ToInt32(favoSlider.Value);
+
+            //sqlQuery
+            string SQLquerry = $"CALL insert_toBooks('{nameB}', {page}, {year},'{nameA}','{cb2}',{favo},'{nameL}');";
+
+            MySqlCommand cmd = new MySqlCommand(SQLquerry, conn);
+            try
+            {
+                //Öppna koppling till DB
+                conn.Open();
+
+                //Exekvera SQL querry
+                cmd.ExecuteReader();
+
+                //stänger kopplingen till DB
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            MessageBox.Show("Inserted successfully!");
+
+            clearAllboxes();
+            listPage.getTable();
+            Frame2.Content = listPage;
+        }
+        public bool typeCheckInt(String input)//check for int
+        {
+            int nr = 0;
+            return int.TryParse(input, out nr);
+        }
+        
         private void updateBtn1_Click(object sender, RoutedEventArgs e)
         {
             updateData();
         }
         public void updateData()
         {
-            ListBooks listPage = new ListBooks();
+            bool v = true;
 
             string Title = TitleTbx.Text;
             string AuthorName = authorTbx.Text;
             int fav = Convert.ToInt32(favoSlider.Value);
-            int pages;
-            
-            
+            int pages = Convert.ToInt32(pageTbx.Text.ToString());
+
+            if (typeCheckInt(txtBoxes[1].Text) != true || typeCheckInt(txtBoxes[1].Text) != true)
+            {
+                v = false;
+                txtBoxes[1].Text = "Error";
+                txtBoxes[3].Text = "Error";
+                if (v == false)
+                {
+                    MessageBox.Show("Unvalid input! You can only write numbers here");
+                }
+            }
+
             try
             {
                 //Öppna kommunimation
                 conn.Open();
 
-                string SQLQuerry1 = $"CALL getIdA({id})";
-                
+                string SQLQuerry;
 
-                // MySQL Command
-                MySqlCommand cmd = new MySqlCommand(SQLQuerry1, conn);
 
-                //Exekvera command
-                MySqlDataReader reader = cmd.ExecuteReader();
-                int idA =Convert.ToInt32(reader.Read());
-              
-                string SQLQuerry2;
-
-                if (pageTbx.Text == "")// för att förhindra error när txtbx är tom, stored pro hanterar null värden.
-                {
-                   SQLQuerry2 = $"CALL UpdateData_procedure({id}, '{Title}', null, {fav},{idA},'{AuthorName}');";
-                }
-                else if(favoSlider.Value < 1)
+                if (favoSlider.Value < 1)
                 {
                     pages = Convert.ToInt32(pageTbx.Text);
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, '{Title}',{pages}, null ,{idA},'{AuthorName}');";
-                }
-                if (authorTbx.Text == "")
-                {
-                    Title = TitleTbx.Text;
-                    pages = Convert.ToInt32(pageTbx.Text);
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, '{Title}', {pages}, {fav},null,null);";
-                }
-                if (TitleTbx.Text == "")
-                {
-                    AuthorName = authorTbx.Text;
-                    pages = Convert.ToInt32(pageTbx.Text);
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, 'null', {pages}, {fav},{idA},'{AuthorName}');";
-                }
-                else if (pageTbx.Text == ""|| favoSlider.Value < 1|| authorTbx.Text == "")
-                {
-                    Title = TitleTbx.Text;
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, '{Title}',null, null ,null,null);";
-                } 
-                else if (pageTbx.Text == ""|| favoSlider.Value < 1|| TitleTbx.Text == "")
-                {
-                    
-                    AuthorName = authorTbx.Text;
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, 'null,null, null ,{idA},'{AuthorName}');";
-                } 
-                else if (authorTbx.Text == ""|| TitleTbx.Text == "")
-                {
-                    pages = Convert.ToInt32(pageTbx.Text);
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, null,{pages}, {fav},null,null);";
-                }
-                else if (authorTbx.Text == ""|| TitleTbx.Text == ""|| favoSlider.Value < 1)
-                {
-                    pages = Convert.ToInt32(pageTbx.Text);
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, null,{pages}, null,null,null);";
-                }else if (authorTbx.Text == ""|| TitleTbx.Text == ""||pageTbx.Text == "")
-                {
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, null,null, {fav},null,null);";
+                    SQLQuerry = $"CALL UpdateData_procedure({id}, '{Title}',{pages}, null ,'{AuthorName}');";
                 }
                 else
-                {
-                    Title = TitleTbx.Text;
-                    AuthorName = authorTbx.Text;
-                    pages = Convert.ToInt32(pageTbx.Text);
-                    SQLQuerry2 = $"CALL UpdateData_procedure({id}, '{Title}', {pages}, {fav},{idA},'{AuthorName}');";
+                { 
+                    SQLQuerry = $"CALL UpdateData_procedure({id}, '{Title}', {pages}, {fav},'{AuthorName}');";
                 }
 
-                conn.Close();// så att nästa cmd kan exekeveras
-
-                conn.Open();
-
-                cmd = new MySqlCommand(SQLQuerry2, conn);
+                MySqlCommand cmd = new MySqlCommand(SQLQuerry, conn);
 
                 cmd.ExecuteReader();
 
@@ -171,29 +198,33 @@ namespace Library_DB
         //Clearing txtbxs
         public void clearAllboxes()
         {
-            authorTbx.Clear();
-            pageTbx.Clear();
-            TitleTbx.Clear();
-            yearTbx.Clear();
+            authorTbx.Text = "Author";
+            pageTbx.Text = "Pages"; 
+            TitleTbx.Text = "Book Title";
+            yearTbx.Text = "Publishing year";
+            langTbx.Text = "Language";
         }
 
-        private void authorTbx_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
+        void fillCombo()
         {
-            clearAllboxes();
+            conn.Open();
+
+            string SQLQuerry1 = $"SELECT * FROM categorys ";
+
+            
+            MySqlCommand cmd = new MySqlCommand(SQLQuerry1, conn);
+            //Exekvera command
+            MySqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                string name = reader.GetString(1);
+                cbx2.Items.Add(name);
+                string genre = reader.GetString(2);
+                cbx1.Items.Add(genre);
+            }
+            conn.Close();
         }
-        private void yearTbx_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            clearAllboxes();
-        }
-        private void pageTbx_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            clearAllboxes();
-        }
-        private void TitleTbx_IsMouseDirectlyOverChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            clearAllboxes();
-        }
-        
+
         //favorit pointer Slider
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e) 
         {
@@ -227,5 +258,7 @@ namespace Library_DB
             }
 
         }
+
+        
     }
 }

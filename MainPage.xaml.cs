@@ -20,9 +20,16 @@ namespace Library_DB
     /// </summary>
     public partial class MainPage : Page
     {
+        ListBooks lb = new ListBooks();
         public MainPage()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            lb.getTable(searchTbx.Text);
+            Frame3.Content = lb;
         }
     }
 }

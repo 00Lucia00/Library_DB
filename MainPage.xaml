@@ -20,8 +20,9 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Center" MaxWidth="1000">
             <Border Background="WhiteSmoke" Margin="20,20,20,16" Opacity="0.65"  CornerRadius="20">
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Grid.ColumnSpan="2"
-                     Grid.Column="1" Grid.Row="1" 
+                    <!--TEXTBOX-->
+                    <TextBox x:Name="searchTbx"
+                        Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" 
                      Margin="30,20,20,20"
                      Text="Search Book"
                      FontSize="20" 
@@ -45,11 +46,12 @@
                 </Border.Effect>
                 <!--Confirm Button-->
                 <Button BorderBrush="{x:Null}" Background="{x:Null}"
-                    Content="Search" Foreground="White" Focusable="False">
+                    Content="Search" Foreground="White" Focusable="False" Click="Button_Click">
                 </Button>
             </Border>
 
         </StackPanel>
         <!--Search Bar-->
+        <Frame x:Name="Frame3" Grid.RowSpan="3" Width="auto" Height="auto" Grid.Row="0" />
     </Grid>
 </Page>

@@ -41,9 +41,9 @@
                     </DataGridCheckBoxColumn>
                     <DataGridTextColumn Binding="{Binding idBooks}" Header=" ID" IsReadOnly="True" Width="26" CanUserResize="False"/>
                     <DataGridTextColumn Binding="{Binding book_title}" Width="*" Header= "   Book Title" IsReadOnly="True"/>
-                    <DataGridTextColumn Binding="{Binding page_amount}" Width="*" Header="Pages" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding page_amount}" Width="45" Header="Pages" IsReadOnly="True"/>
                     <DataGridTextColumn Binding="{Binding Author_name}" Width="*" Header="   Author" IsReadOnly="True"/>
-                    <DataGridTextColumn Binding="{Binding idFavorits}"  Width="*" Header="Favo" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding Favorits_id}"  Width="45" Header="Favo" IsReadOnly="True"/>
                     <!--<DataGridTextColumn Binding="{Binding category_id}" Width="*" Header="Category" IsReadOnly="True"/>
                     <DataGridTextColumn Binding="{Binding idLanguages}" Width="*" Header="Language" IsReadOnly="True"/>-->
                     
