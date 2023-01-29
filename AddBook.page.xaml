@@ -14,95 +14,61 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="50" MinHeight="45.965"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="400"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="1" Margin="20,20,20,116" 
-                  Background="Transparent" Foreground="#FF503612" 
-                  BorderThickness="3" BorderBrush="DimGray" 
-                  d:ItemsSource="{d:SampleData ItemCount=6}">
-
-        </DataGrid>
-
         <!--enter data bars-->
-        <StackPanel  Grid.Row="2"  MaxWidth="1000">
+        <StackPanel  Grid.Row="2" Margin="0,0,0,-130"  >
+
             <!--Book TITLE-->
-            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
-                     Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
-                <TextBox x:Name="TitleTbx" Grid.ColumnSpan="2"
-                      Grid.Row="1" 
-                     Margin="30,14,20,14"
+            <TextBox x:Name="TitleTbx" Style="{DynamicResource roundTxtbox}"
+                     Margin="30,14,20,15" Width="365"  Background="White"
                      Text="Book Title"
-                     FontSize="20" 
-                     FontFamily="Century Gothic" 
-                     Foreground="#FF503612"
-                     BorderThickness="0"
-                     BorderBrush="Transparent"
-                     Background="Transparent" IsMouseDirectlyOverChanged="TitleTbx_IsMouseDirectlyOverChanged" />
-            </Border>
+                    
+                     IsMouseDirectlyOverChanged="TitleTbx_IsMouseDirectlyOverChanged" >
+            </TextBox>
             <!--Book TITLE-->
+
             <!--INT VALUES-->
             <StackPanel Orientation="Horizontal">
-                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" 
-                         Opacity="0.7" Margin="20,10,10,10" CornerRadius="20" Height="58" Width="180">
-                    <TextBox x:Name="pageTbx"
-                     Grid.Row="1" VerticalAlignment="Center" Margin="20,10,10,10"
+                <TextBox x:Name="pageTbx" Style="{DynamicResource roundTxtbox}"
+                     Margin="40,10,10,10" Width="165" Background="White"
                      
                      Text="Page amount" Foreground="#FF503612"
-                     FontSize="19" FontFamily="Century Gothic" 
-                     
-                     BorderThickness="0"
-                     BorderBrush="Transparent"
-                     Background="Transparent" IsMouseDirectlyOverChanged="pageTbx_IsMouseDirectlyOverChanged"/>
-                </Border>
-                <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="0,10,10,10" CornerRadius="20" Height="58" Width="185">
-                    <TextBox x:Name="yearTbx"
-                     Grid.Row="1" VerticalAlignment="Center" Margin="20,10,10,10"
-                     
-                     Text="Publishing year" Foreground="#FF503612"
-                     FontSize="19" FontFamily="Century Gothic" 
-                     
-                     BorderThickness="0"
-                     BorderBrush="Transparent"
-                     Background="Transparent" IsMouseDirectlyOverChanged="yearTbx_IsMouseDirectlyOverChanged"/>
-                </Border>
+                     IsMouseDirectlyOverChanged="pageTbx_IsMouseDirectlyOverChanged">
+                </TextBox>
+
+                <TextBox x:Name="yearTbx" Style="{DynamicResource roundTxtbox}"
+                     Text="Publishing year" 
+                         
+                     Margin="10" Width="165" Background="White"
+                     IsMouseDirectlyOverChanged="yearTbx_IsMouseDirectlyOverChanged" >
+                </TextBox>
             </StackPanel>
             <!--INT VALUES-->
 
+            <!--ComboBox-->
+            <StackPanel Orientation="Horizontal">
 
-            <Border  Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
-                <ComboBox Margin="11,6,11,4" Foreground="#FF503612"
-                          Background="Transparent"  BorderBrush="Transparent" BorderThickness="0" 
-                          Focusable="False" FontFamily="Century Gothic" FontSize="19"
-                           >
+                <ComboBox Margin="40,10,10,10" Style="{DynamicResource roundbox}" 
+                          Background="White" Opacity="0.7"/>
+                <ComboBox Margin="10"  Style="{DynamicResource roundbox}" 
+                          Background="White" Opacity="0.7"/>
 
-                </ComboBox>
-                <!--<TextBox Grid.ColumnSpan="2" 
-                      Grid.Row="1" 
-                     Margin="30,15,20,14"
-                     Text="Category"
-                     FontSize="20" 
-                     FontFamily="Century Gothic" 
-                     Foreground="#FF503612"
-                     BorderThickness="0"
-                     BorderBrush="Transparent"
-                     Background="Transparent" TextChanged="TextBox_TextChanged"/>-->
-            </Border>
+            </StackPanel>
 
-            <Border Background="White" BorderThickness="2" BorderBrush="DimGray" Opacity="0.7" Margin="10" CornerRadius="20" Height="58" Width="384">
+            <TextBox Grid.ColumnSpan="2" Grid.Row="1" Margin="30,15,20,14" Style="{DynamicResource roundTxtbox}"
+                     Text="Category" TextChanged="TextBox_TextChanged"
+                     Background="White" Width="365"/>
 
-                <TextBox x:Name="authorTbx"
-                    Grid.ColumnSpan="2" Grid.Row="1" 
-                     Margin="30,14,20,15"
-                     Text="Author"
-                     FontSize="20" 
-                     FontFamily="Century Gothic" 
-                     Foreground="#FF503612"
-                     BorderThickness="0"
-                     BorderBrush="Transparent" IsMouseDirectlyOverChanged="authorTbx_IsMouseDirectlyOverChanged"/>
-            </Border>
+
+            <TextBox x:Name="authorTbx" Style="{DynamicResource roundTxtbox}"
+                    Text="Author"
+                    Margin="30,14,20,15" Width="365"  Background="White"
+                    IsMouseDirectlyOverChanged="authorTbx_IsMouseDirectlyOverChanged"/>
+
             <!--TEXT BOX-->
             <!--Slider-->
             <StackPanel Orientation="Horizontal">
@@ -139,6 +105,5 @@
             </StackPanel>
             <!--Buttons-->
         </StackPanel>
-        <Frame x:Name="Frame2" Grid.RowSpan="3" Width="auto" Height="auto" Grid.Row="0" />
     </Grid>
 </Page>
