@@ -16,64 +16,87 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50" MinHeight="45.965"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="560"/>
+            <RowDefinition Height="5"/>
+
         </Grid.RowDefinitions>
 
         <!--enter data bars-->
-        <StackPanel  Grid.Row="2" Margin="0,0,0,-130"  >
-
-            <!--Book TITLE-->
-            <TextBox x:Name="TitleTbx" Style="{DynamicResource roundTxtbox}"
-                     Margin="30,14,20,15" Width="365"  Background="White"
-                     Text="Book Title"
-                    
-                     IsMouseDirectlyOverChanged="TitleTbx_IsMouseDirectlyOverChanged" >
-            </TextBox>
-            <!--Book TITLE-->
+        <StackPanel  Grid.Row="2" Margin="-1,0,0,-25" Grid.RowSpan="3"  >
+            <Border Margin="30,14,20,15" Height="55" Width="365"
+                        Background="White" BorderThickness="2" BorderBrush="DimGray"
+                        CornerRadius="20" Opacity="0.7">
+                <!--Book TITLE-->
+                <TextBox x:Name="TitleTbx" Style="{DynamicResource roundTxtbox}"
+                      Width="325"  BorderThickness="0" BorderBrush="Transparent"
+                       VerticalContentAlignment="center" HorizontalContentAlignment="Left"
+                     Text="Book Title" />
+                <!--Book TITLE-->
+            </Border>
 
             <!--INT VALUES-->
             <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="pageTbx" Style="{DynamicResource roundTxtbox}"
-                     Margin="40,10,10,10" Width="165" Background="White"
+                <Border Margin="40,10,10,10" Height="50" Width="165"
+                        Background="White" BorderThickness="2" BorderBrush="DimGray"
+                        CornerRadius="20" Opacity="0.7">
+                    <TextBox x:Name="pageTbx" Style="{DynamicResource roundTxtbox}"
+                      Width="145" BorderThickness="0" BorderBrush="Transparent"
+                      VerticalContentAlignment="center" HorizontalContentAlignment="left"
                      
-                     Text="Page amount" Foreground="#FF503612"
-                     IsMouseDirectlyOverChanged="pageTbx_IsMouseDirectlyOverChanged">
-                </TextBox>
+                       Text="Pages"
+                      />
 
-                <TextBox x:Name="yearTbx" Style="{DynamicResource roundTxtbox}"
-                     Text="Publishing year" 
-                         
-                     Margin="10" Width="165" Background="White"
-                     IsMouseDirectlyOverChanged="yearTbx_IsMouseDirectlyOverChanged" >
-                </TextBox>
+                </Border>
+                <Border Margin="10"  Height="50" Width="165"
+                        Background="White" BorderThickness="2" BorderBrush="DimGray"
+                        CornerRadius="20" Opacity="0.7">
+                    <TextBox x:Name="yearTbx" Style="{DynamicResource roundTxtbox}"
+                       Width="165" BorderThickness="0" BorderBrush="Transparent"
+                      VerticalContentAlignment="center" HorizontalContentAlignment="Center"
+                             
+                       Text="Publishing year" 
+                      />
+                </Border>
             </StackPanel>
             <!--INT VALUES-->
 
             <!--ComboBox-->
             <StackPanel Orientation="Horizontal">
 
-                <ComboBox Margin="40,10,10,10" Style="{DynamicResource roundbox}" 
+                <ComboBox x:Name="cbx1" Margin="40,10,10,10" 
+                          Width="165" Height="30"
                           Background="White" Opacity="0.7"/>
-                <ComboBox Margin="10"  Style="{DynamicResource roundbox}" 
+                <ComboBox x:Name="cbx2" Margin="10"  
+                          Width="165" Height="30"
                           Background="White" Opacity="0.7"/>
-
             </StackPanel>
 
-            <TextBox Grid.ColumnSpan="2" Grid.Row="1" Margin="30,15,20,14" Style="{DynamicResource roundTxtbox}"
-                     Text="Category" TextChanged="TextBox_TextChanged"
-                     Background="White" Width="365"/>
+            <Border Margin="30,14,20,15" Height="55" Width="365"
+                        Background="White" BorderThickness="2" BorderBrush="DimGray"
+                        CornerRadius="20" Opacity="0.7">
+                <!--language-->
+                <TextBox x:Name="langTbx" Style="{DynamicResource roundTxtbox}"
+                      Width="325"  BorderThickness="0" BorderBrush="Transparent"
+                       VerticalContentAlignment="center" HorizontalContentAlignment="Left"
+                      Text="Language" />
 
+            </Border>
+            <Border Margin="30,14,20,15" Height="55" Width="365"
+                        Background="White" BorderThickness="2" BorderBrush="DimGray"
+                        CornerRadius="20" Opacity="0.7">
+                <!--Author-->
+                <TextBox  x:Name="authorTbx" Style="{DynamicResource roundTxtbox}"
+                      Width="325"  BorderThickness="0" BorderBrush="Transparent"
+                       VerticalContentAlignment="center" HorizontalContentAlignment="Left"
+                      Text="Author" />
 
-            <TextBox x:Name="authorTbx" Style="{DynamicResource roundTxtbox}"
-                    Text="Author"
-                    Margin="30,14,20,15" Width="365"  Background="White"
-                    IsMouseDirectlyOverChanged="authorTbx_IsMouseDirectlyOverChanged"/>
+            </Border>
+            <!--TEXT BOXes-->
 
-            <!--TEXT BOX-->
             <!--Slider-->
             <StackPanel Orientation="Horizontal">
                 <CheckBox x:Name="favoCheck" 
-                          Margin="30,12,0,10" Checked="favoChecked">
+                          Margin="50,12,0,10" Checked="favoChecked">
                 </CheckBox>
                 <Slider x:Name="favoSlider" Width="200" 
                         Maximum="4" Cursor="Hand"
@@ -93,17 +116,18 @@
                 <!--Confirm Button-->
                 <Button x:Name="confirmBtn" Style="{DynamicResource roundButton}"
                     Background="#FF5F731D"
-                    Focusable="False" ToolTip="Add book">
+                    Focusable="False" ToolTip="Add book" Click="confirmBtn_Click">
                     <materialDesign:PackIcon Kind="Check" Foreground="White" />
                 </Button>
                 <!--Update Button-->
                 <Button x:Name="updateBtn1" Style="{DynamicResource roundButton}"
                          Background="#FF5F731D" Margin="10" Focusable="False" ToolTip="Update book info" 
-                         Click="updateBtn1_Click">
+                         Click="updateBtn1_Click" IsEnabled="False">
                     <materialDesign:PackIcon Kind="Update" Foreground="White"  />
                 </Button>
             </StackPanel>
             <!--Buttons-->
         </StackPanel>
+        <Frame x:Name="Frame2" Grid.RowSpan="5" Width="auto" Height="auto" Grid.Row="0" Margin="0,0,0,-33"  />
     </Grid>
 </Page>

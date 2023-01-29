@@ -6,22 +6,18 @@
     <Application.Resources>
         <!--TEXTBOX STYLE-->
         <Style x:Key ="roundTxtbox" TargetType="{x:Type TextBox}">
-            <Setter Property="Background" Value="{x:Null}"/>
-            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontFamily" Value="Century Gothic"/>
             <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Cursor" Value="IBeam"/>
+            <Setter Property="Height" Value="30"/>
             <Setter Property="Foreground" Value="#FF503612"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border Background="{TemplateBinding Background}" BorderThickness="2" BorderBrush="DimGray"
-                                     CornerRadius="20" Opacity="0.7"
-                                     Height="58">
-                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+            
+            <Style.Triggers>
+                <Trigger Property="IsSelectionActive" Value="True">
+                    <Setter Property="Text" Value=""/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         
         <!--Combobox STYLE-->
@@ -31,12 +27,14 @@
             <Setter Property="FontFamily" Value="Century Gothic"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Foreground" Value="#FF503612"/>
+            <Setter Property="Height" Value="58"/>
+            <Setter Property="Width" Value="165"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ComboBox}">
                         <Border Background="{TemplateBinding Background}" BorderThickness="2" BorderBrush="DimGray" 
                                 CornerRadius="20" Opacity="0.7"
-                                Height="58" Width="165" >
+                                Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" >
                             <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
                         </Border>
                     </ControlTemplate>
