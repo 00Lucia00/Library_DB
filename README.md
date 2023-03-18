@@ -16,9 +16,13 @@ Databasen som är kopplad till applikationen innehåller då bara barnböcker f�
 •	Language_books table
 
 Books tabell innehåller FKs till authors, category och favorites table, sedan är de en linked table mellan books och languages då vi har vissa böcker i mer än ett språk.
-Applikationen innehåller ett fönster med 3 olika pages. Main window innehåller en tom plats för de olika sidorna. Den innehåller även en header som hjälper dig navigera till de olika pages som finns genom olika knappar. 
+
+Applikationen innehåller ett fönster med 3 olika pages. Main window innehåller en tom plats för de olika sidorna. Den innehåller även en header som hjälper dig navigera till de olika pages som finns genom olika knappar.
+
 Main page innehåller en sök låda, när den används slussas du vidare till listBooks page som sedan visar upp sökresultatet. Sökfunktionen tillåter sökning av författarnamn och boktitlar men inte mer än det förtillfället. 
- ListBooks page innehåller en datagrid som visar upp befintliga böcker i databasen. Här har jag valt att korta ner informationen som visas i tabellen genom att solla de columner och tabeller som visas via en stored procedure vid namn ”SelectBooksWithAuthors”. Listbooks page ger dig även möjligheten att ta bort och uppdatera den bok du valt i listan. Tanken va även att när du valt en bok så skulle bild och titel visas längs upp på sidan, men valde att spara den funktionen till senare. Väljer man att uppdatera en bok så slussas man vidare till AddBooks page.
+
+ListBooks page innehåller en datagrid som visar upp befintliga böcker i databasen. Här har jag valt att korta ner informationen som visas i tabellen genom att solla de columner och tabeller som visas via en stored procedure vid namn ”SelectBooksWithAuthors”. Listbooks page ger dig även möjligheten att ta bort och uppdatera den bok du valt i listan. Tanken va även att när du valt en bok så skulle bild och titel visas längs upp på sidan, men valde att spara den funktionen till senare. Väljer man att uppdatera en bok så slussas man vidare till AddBooks page.
+ 
 Addbooks page ger dig möjligheten att uppdatera boken du valt men även lägga till en ny bok i databasen. Här kan du välja att fylla i alla rutor eller låta dem vara blanka.
 
 Här är 10 böcker du kan kopiera för att enklare göra en sökning: - finns självklart fler i db
